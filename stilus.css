@@ -1,0 +1,785 @@
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px)
+}
+
+body {
+  margin: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: #eef0f3;
+  color: #14161a;
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif
+}
+
+header {
+  background: #14161a;
+  color: #fff;
+  text-align: center;
+  padding: 48px 16px 0
+}
+
+h1 {
+  margin: 0;
+  font-family: "Archivo Black", Impact, "Arial Black", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 11vw, 7.5rem);
+  letter-spacing: .02em;
+  line-height: 1
+}
+
+.flag {
+  display: flex;
+  height: 14px;
+  margin-top: 40px
+}
+
+.flag i {
+  flex: 1
+}
+
+.flag i:nth-child(1) {
+  background: #000
+}
+
+.flag i:nth-child(2) {
+  background: #c8102e
+}
+
+.flag i:nth-child(3) {
+  background: #f2b705
+}
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 16px 64px
+}
+
+h2 {
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin: 0 0 12px;
+  color: #14161a
+}
+
+h3 {
+  color: #14161a
+}
+
+.stage {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #d3d7de;
+  color: #14161a
+}
+
+.pic {
+  min-height: 230px;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  transition: background .4s
+}
+
+.pic b {
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 14vw, 6rem);
+  line-height: 1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .45)
+}
+
+.stage p {
+  margin: 0;
+  padding: 16px 20px
+}
+
+.stage p strong {
+  display: block;
+  font-size: 1.1rem
+}
+
+/* ---- Csúszka ---- */
+.slider {
+  margin: 20px 0 0
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  background: none;
+  cursor: pointer
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #d3d7de
+}
+
+input[type=range]::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #d3d7de
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: #c8102e;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .4)
+}
+
+input[type=range]::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #c8102e;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .4)
+}
+
+/* A számok pontosan a csúszka gombjának útvonalára esnek (a gomb 24px széles) */
+.ticks {
+  position: relative;
+  height: 44px
+}
+
+.ticks button {
+  position: absolute;
+  top: 0;
+  left: calc(12px + var(--i) * (100% - 24px) / 4);
+  transform: translateX(-50%);
+  border: 0;
+  background: none;
+  color: #5b616b;
+  font: inherit;
+  font-size: .85rem;
+  padding: 0 8px 4px;
+  cursor: pointer
+}
+
+.ticks button::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 0 auto 4px;
+  border-radius: 50%;
+  background: #9aa1ad
+}
+
+.ticks button.on {
+  color: #c8102e;
+  font-weight: 700
+}
+
+.ticks button.on::before {
+  background: #c8102e
+}
+
+.switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: min(320px, 100%);
+  margin: 40px auto 28px;
+  background: #e2e5ea;
+  border-radius: 999px;
+  padding: 4px
+}
+
+.switch button {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: none;
+  color: #14161a;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 0;
+  cursor: pointer;
+  border-radius: 999px
+}
+
+.switch button[aria-selected=true] {
+  color: #fff
+}
+
+.thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  background: #c8102e;
+  border-radius: 999px;
+  transition: transform .3s
+}
+
+.switch.right .thumb {
+  transform: translateX(100%)
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f2b705;
+  outline-offset: 2px
+}
+
+.panel[hidden] {
+  display: none
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #d3d7de;
+  border-radius: 14px;
+  padding: 20px;
+  color: #14161a
+}
+
+.opts {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0
+}
+
+.opts button {
+  text-align: left;
+  font: inherit;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d3d7de;
+  background: #eef0f3;
+  color: #14161a;
+  cursor: pointer
+}
+
+.opts button:hover:not(:disabled) {
+  border-color: #c8102e
+}
+
+.opts .ok {
+  background: #1b7f3b;
+  border-color: #1b7f3b;
+  color: #fff
+}
+
+.opts .bad {
+  background: #c8102e;
+  border-color: #c8102e;
+  color: #fff
+}
+
+.next {
+  border: 0;
+  background: #14161a;
+  color: #eef0f3;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer
+}
+
+.meta {
+  color: #5b616b;
+  font-size: .9rem
+}
+
+.today p {
+  margin: 0 0 12px
+}
+
+.today p:last-child {
+  margin: 0
+}
+
+/* ---- Vektoros térkép ---- */
+.mapcard {
+  margin-top: 32px
+}
+
+.mapcard h2 {
+  margin-bottom: 4px
+}
+
+.mapwrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-top: 12px
+}
+
+@media (max-width:720px) {
+  .mapwrap {
+    grid-template-columns: 1fr
+  }
+}
+
+@media (min-width:721px) {
+  .de {
+    position: sticky;
+    top: 16px
+  }
+}
+
+/* a hosszú szöveg mellett a térkép a képernyőn marad */
+.de {
+  --land: #dfe3ea;
+  --city: #c3cad6;
+  --edge: #fff;
+  --text: #14161a;
+  --water: #2f7fd0;
+  --mount: #8a6d3b;
+  --sea: #2f7fd0;
+  --hover: #f6e2a0;
+  --sel: #f4b8c2;
+  display: block;
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif
+}
+
+.land {
+  fill: var(--land);
+  cursor: pointer
+}
+
+.land.city {
+  fill: var(--city)
+}
+
+.land:hover {
+  fill: var(--hover)
+}
+
+.land.sel {
+  fill: var(--sel)
+}
+
+.border {
+  fill: none;
+  stroke: var(--edge);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  pointer-events: none
+}
+
+.river {
+  fill: none;
+  stroke: var(--water);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none
+}
+
+.river.small {
+  stroke-width: 1.2
+}
+
+.m,
+.mount,
+.capital {
+  cursor: pointer
+}
+
+.lake {
+  fill: var(--water);
+  stroke: var(--edge);
+  stroke-width: 1
+}
+
+.mount {
+  fill: var(--mount);
+  stroke: var(--edge);
+  stroke-width: .8
+}
+
+.m {
+  stroke: var(--edge);
+  stroke-width: 1.2
+}
+
+.auto {
+  fill: #c8102e
+}
+
+.ipar {
+  fill: #4a5568
+}
+
+.vegy {
+  fill: #8b46e0
+}
+
+.penz {
+  fill: #f2b705;
+  stroke: #14161a
+}
+
+.tech {
+  fill: #0e9aa7
+}
+
+.szel {
+  fill: #1b9a4b
+}
+
+.kikoto {
+  fill: var(--edge);
+  stroke: #1d6fd6;
+  stroke-width: 3
+}
+
+.capital {
+  fill: #14161a;
+  stroke: var(--edge);
+  stroke-width: 1
+}
+
+.lbl {
+  pointer-events: none;
+  font-size: 10px;
+  font-weight: 600;
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: var(--edge);
+  stroke-width: 3px;
+  stroke-linejoin: round
+}
+
+.mlbl {
+  font-style: italic;
+  fill: var(--mount)
+}
+
+.rlbl {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 9px;
+  fill: var(--water)
+}
+
+.abbr {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--text);
+  opacity: .35;
+  pointer-events: none
+}
+
+.sea {
+  pointer-events: none;
+  font-size: 11px;
+  font-style: italic;
+  fill: var(--sea)
+}
+
+.side h3 {
+  margin: 0 0 4px;
+  font-size: 1.3rem
+}
+
+.side h4 {
+  margin: 14px 0 2px;
+  font-size: 1rem
+}
+
+.side p {
+  margin: 0
+}
+
+.side .tip {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #eef0f3
+}
+
+.side .tip strong {
+  display: block
+}
+
+.side .meta {
+  margin: 0
+}
+
+.ph {
+  aspect-ratio: 16/10;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 8px;
+  border: 2px dashed #9aa1ad;
+  border-radius: 10px;
+  background: #eef0f3;
+  color: #5b616b;
+  font-size: .85rem
+}
+
+.fig {
+  margin: 14px 0 0
+}
+
+.fig img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 10px
+}
+
+.fig figcaption {
+  font-size: .85rem;
+  color: #5b616b;
+  margin-top: 4px
+}
+
+.fig figcaption a {
+  color: inherit
+}
+
+.legend {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px 16px;
+  font-size: .9rem
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.legend svg {
+  flex: none;
+  --edge: #fff;
+  --water: #2f7fd0;
+  --mount: #8a6d3b
+}
+
+@media (prefers-reduced-motion:reduce) {
+  * {
+    transition: none !important
+  }
+}
+
+@media (prefers-color-scheme:dark) {
+  body {
+    background: #101216;
+    color: #eceef2
+  }
+
+  h2,
+  h3 {
+    color: #eceef2
+  }
+
+  .stage,
+  .card {
+    background: #1a1d23;
+    border-color: #2c313a;
+    color: #eceef2
+  }
+
+  .ticks button,
+  .meta,
+  dt {
+    color: #9aa1ad
+  }
+
+  .ticks button::before {
+    background: #5b616b
+  }
+
+  .ticks button.on {
+    color: #ff4d6a
+  }
+
+  .ticks button.on::before {
+    background: #ff4d6a
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    background: #2c313a
+  }
+
+  input[type=range]::-moz-range-track {
+    background: #2c313a
+  }
+
+  .switch {
+    background: #262a32
+  }
+
+  .switch button {
+    color: #eceef2
+  }
+
+  .opts button {
+    background: #101216;
+    border-color: #2c313a;
+    color: #eceef2
+  }
+
+  .opts .ok {
+    background: #1b7f3b;
+    border-color: #1b7f3b;
+    color: #fff
+  }
+
+  .opts .bad {
+    background: #c8102e;
+    border-color: #c8102e;
+    color: #fff
+  }
+
+  .next {
+    background: #eceef2;
+    color: #101216
+  }
+
+  .switch button[aria-selected=true] {
+    color: #fff
+  }
+
+  .de {
+    --land: #2b3039;
+    --city: #434b59;
+    --edge: #1a1d23;
+    --text: #eceef2;
+    --water: #5aa2e6;
+    --mount: #c9a36b;
+    --sea: #7db6f0;
+    --hover: #4a4a2c;
+    --sel: #7a2a3a
+  }
+
+  .ph {
+    background: #101216;
+    border-color: #5b616b;
+    color: #9aa1ad
+  }
+
+  .side .tip {
+    background: #101216
+  }
+
+  .fig figcaption {
+    color: #9aa1ad
+  }
+
+  .legend svg {
+    --edge: #1a1d23;
+    --water: #5aa2e6;
+    --mount: #c9a36b
+  }
+
+  .penz {
+    stroke: #eceef2
+  }
+
+  .capital {
+    fill: #eceef2
+  }
+}
+
+/* ---- Múlt rész (történelem) ---- */
+.hist .row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: 24px 0;
+  border-top: 1px solid #d3d7de
+}
+
+.hist .row:first-child {
+  border-top: 0;
+  padding-top: 0
+}
+
+.hist .row:last-child {
+  padding-bottom: 0
+}
+
+.hist h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem
+}
+
+.hist .fig {
+  margin: 0
+}
+
+.hist .tip {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #eef0f3
+}
+
+.hist .tip strong {
+  display: block
+}
+
+.quizsec {
+  margin-top: 32px
+}
+
+@media (max-width:720px) {
+  .hist .row {
+    grid-template-columns: 1fr
+  }
+}
+
+@media (prefers-color-scheme:dark) {
+  .hist .row {
+    border-color: #2c313a
+  }
+
+  .hist .tip {
+    background: #101216
+  }
+}
+
+.stage .credit {
+  padding: 0 20px 14px;
+  font-size: .8rem
+}
+
+.stage .credit:empty {
+  display: none
+}
+
+.stage .credit a {
+  color: inherit
+}
