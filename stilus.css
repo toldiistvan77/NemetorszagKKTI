@@ -1,11 +1,20 @@
+/* ============================================================
+   Németország weboldal: stílusok (stilus.css)
+   Sorrend: alapok, fejléc, időutazás, múlt/jelen kapcsoló, kvíz,
+   térkép, sötét mód, múlt rész
+   ============================================================ */
+
+/* Minden elem szélessége a belső margót és a keretet is tartalmazza, így nem csúsznak szét a méretek */
 * {
   box-sizing: border-box
 }
 
+/* Telefonon a kivágás (notch) alatt hagy helyet, amikor az oldal egy részére görget */
 html {
   scroll-padding-top: env(safe-area-inset-top, 0px)
 }
 
+/* Az egész oldal alapja: háttérszín, szövegszín és betűtípus (rendszerbetű, így gyorsan betölt) */
 body {
   margin: 0;
   padding-top: env(safe-area-inset-top, 0px);
@@ -15,6 +24,7 @@ body {
   font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif
 }
 
+/* A fekete fejléc, benne a cím és a zászló csíkja */
 header {
   background: #14161a;
   color: #fff;
@@ -22,6 +32,7 @@ header {
   padding: 48px 16px 0
 }
 
+/* A nagy NÉMETORSZÁG felirat (Archivo Black betűtípus, a méret a képernyő szélességéhez igazodik) */
 h1 {
   margin: 0;
   font-family: "Archivo Black", Impact, "Arial Black", sans-serif;
@@ -31,6 +42,7 @@ h1 {
   line-height: 1
 }
 
+/* A német zászló csíkja a fejléc alján: három egyforma széles sáv egymás mellett */
 .flag {
   display: flex;
   height: 14px;
@@ -41,6 +53,7 @@ h1 {
   flex: 1
 }
 
+/* A három sáv színe: fekete, piros, arany */
 .flag i:nth-child(1) {
   background: #000
 }
@@ -53,12 +66,14 @@ h1 {
   background: #f2b705
 }
 
+/* A fő tartalom: legfeljebb 1080 px széles, középre igazítva */
 main {
   max-width: 1080px;
   margin: 0 auto;
   padding: 32px 16px 64px
 }
 
+/* A fejezetcímek (pl. Németország története, Kvíz) stílusa */
 h2 {
   font-family: "Archivo Black", Impact, sans-serif;
   font-weight: 400;
@@ -67,10 +82,12 @@ h2 {
   color: #14161a
 }
 
+/* Az alcímek színe */
 h3 {
   color: #14161a
 }
 
+/* Az időutazás kártyája: lekerekített, keretes doboz, benne a kép, az évszám és a szöveg */
 .stage {
   border-radius: 14px;
   overflow: hidden;
@@ -79,6 +96,7 @@ h3 {
   color: #14161a
 }
 
+/* A kártya felső, képes része: a háttérkép vagy színátmenet, az évszám alul jelenik meg */
 .pic {
   min-height: 230px;
   display: flex;
@@ -90,6 +108,7 @@ h3 {
   transition: background .4s
 }
 
+/* A nagy évszám a képen, árnyékkal, hogy a képen is olvasható legyen */
 .pic b {
   font-family: "Archivo Black", Impact, sans-serif;
   font-weight: 400;
@@ -98,21 +117,25 @@ h3 {
   text-shadow: 0 2px 12px rgba(0, 0, 0, .45)
 }
 
+/* A kártya szövege (cím és leírás) az alsó részen */
 .stage p {
   margin: 0;
   padding: 16px 20px
 }
 
+/* A szakasz címe külön sorban, kicsit nagyobb betűvel */
 .stage p strong {
   display: block;
   font-size: 1.1rem
 }
 
 /* ---- Csúszka ---- */
+/* Az időutazás csúszkájának tartója */
 .slider {
   margin: 20px 0 0
 }
 
+/* A csúszka alapkinézetének kikapcsolása, hogy mi rajzolhassuk meg a sávot és a gombot */
 input[type=range] {
   -webkit-appearance: none;
   appearance: none;
@@ -124,18 +147,21 @@ input[type=range] {
   cursor: pointer
 }
 
+/* A csúszka sávja Chrome-ban, Edge-ben és Safariban */
 input[type=range]::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 3px;
   background: #d3d7de
 }
 
+/* A csúszka sávja Firefoxban (ugyanaz a kinézet, mint fent) */
 input[type=range]::-moz-range-track {
   height: 6px;
   border-radius: 3px;
   background: #d3d7de
 }
 
+/* A csúszka piros, kerek gombja Chrome-ban, Edge-ben és Safariban */
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   box-sizing: border-box;
@@ -148,6 +174,7 @@ input[type=range]::-webkit-slider-thumb {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .4)
 }
 
+/* A csúszka gombja Firefoxban (ugyanaz a kinézet, mint fent) */
 input[type=range]::-moz-range-thumb {
   box-sizing: border-box;
   width: 24px;
@@ -159,11 +186,13 @@ input[type=range]::-moz-range-thumb {
 }
 
 /* A számok pontosan a csúszka gombjának útvonalára esnek (a gomb 24px széles) */
+/* Az évszámok sora a csúszka alatt */
 .ticks {
   position: relative;
   height: 44px
 }
 
+/* Egy-egy évszám gombja: a --i érték (0-4) alapján a CSS számolja ki, hol legyen a sávon */
 .ticks button {
   position: absolute;
   top: 0;
@@ -178,6 +207,7 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer
 }
 
+/* A kis pötty az évszám fölött */
 .ticks button::before {
   content: "";
   display: block;
@@ -188,15 +218,18 @@ input[type=range]::-moz-range-thumb {
   background: #9aa1ad
 }
 
+/* A kiválasztott évszám piros és félkövér */
 .ticks button.on {
   color: #c8102e;
   font-weight: 700
 }
 
+/* A kiválasztott évszám pöttye is piros */
 .ticks button.on::before {
   background: #c8102e
 }
 
+/* A múlt / jelen kapcsoló: lekerekített tartó két gombbal */
 .switch {
   position: relative;
   display: grid;
@@ -208,6 +241,7 @@ input[type=range]::-moz-range-thumb {
   padding: 4px
 }
 
+/* A kapcsoló két szöveges gombja (a piros csúszka fölött vannak) */
 .switch button {
   position: relative;
   z-index: 1;
@@ -221,10 +255,12 @@ input[type=range]::-moz-range-thumb {
   border-radius: 999px
 }
 
+/* A kiválasztott gomb szövege fehér, hogy látszódjon a piros háttéren */
 .switch button[aria-selected=true] {
   color: #fff
 }
 
+/* A piros csúszka, ami a kiválasztott gomb mögött van */
 .thumb {
   position: absolute;
   top: 4px;
@@ -236,20 +272,24 @@ input[type=range]::-moz-range-thumb {
   transition: transform .3s
 }
 
+/* Ha a jelen van kiválasztva, a piros csúszka átmozog a jobb oldalra */
 .switch.right .thumb {
   transform: translateX(100%)
 }
 
+/* Billentyűzetes használatnál sárga keret mutatja, melyik gomb van kijelölve */
 button:focus-visible,
 input:focus-visible {
   outline: 3px solid #f2b705;
   outline-offset: 2px
 }
 
+/* A rejtett panel (múlt vagy jelen) egyáltalán nem jelenik meg */
 .panel[hidden] {
   display: none
 }
 
+/* Az általános fehér kártya: keret, lekerekített sarok, belső margó */
 .card {
   background: #fff;
   border: 1px solid #d3d7de;
@@ -258,12 +298,14 @@ input:focus-visible {
   color: #14161a
 }
 
+/* A kvíz válaszlehetőségei egymás alatt, kis térközzel */
 .opts {
   display: grid;
   gap: 8px;
   margin: 14px 0
 }
 
+/* Egy válaszlehetőség gombja */
 .opts button {
   text-align: left;
   font: inherit;
@@ -275,22 +317,26 @@ input:focus-visible {
   cursor: pointer
 }
 
+/* Ha az egér fölötte van (és még nem válaszoltunk), piros keret jelenik meg */
 .opts button:hover:not(:disabled) {
   border-color: #c8102e
 }
 
+/* A jó válasz zöld lesz */
 .opts .ok {
   background: #1b7f3b;
   border-color: #1b7f3b;
   color: #fff
 }
 
+/* A rossz válasz, amit a felhasználó választott, piros lesz */
 .opts .bad {
   background: #c8102e;
   border-color: #c8102e;
   color: #fff
 }
 
+/* A Következő kérdés / Eredmény gomb a kvízben */
 .next {
   border: 0;
   background: #14161a;
@@ -302,11 +348,13 @@ input:focus-visible {
   cursor: pointer
 }
 
+/* Halvány, kisebb szöveg (képaláírások, kérdés száma, magyarázatok) */
 .meta {
   color: #5b616b;
   font-size: .9rem
 }
 
+/* A bekezdések között kis térköz van, az utolsó után nincs */
 .today p {
   margin: 0 0 12px
 }
@@ -316,6 +364,7 @@ input:focus-visible {
 }
 
 /* ---- Vektoros térkép ---- */
+/* A térképes kártya: kis hely hagyása fölötte, a címe közelebb a leíráshoz */
 .mapcard {
   margin-top: 32px
 }
@@ -324,6 +373,7 @@ input:focus-visible {
   margin-bottom: 4px
 }
 
+/* A térkép és a mellette lévő leírás két oszlopban */
 .mapwrap {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -332,13 +382,16 @@ input:focus-visible {
   margin-top: 12px
 }
 
+/* Keskeny képernyőn (telefon) a két oszlop egymás alá kerül */
 @media (max-width:720px) {
   .mapwrap {
     grid-template-columns: 1fr
   }
 }
 
+/* Széles képernyőn a térkép lefelé görgetéskor is a képernyőn marad */
 @media (min-width:721px) {
+  /* A térkép SVG-je: itt vannak a színek változóként (--land, --water stb.), így a sötét mód könnyen átszínezi */
   .de {
     position: sticky;
     top: 16px
@@ -364,23 +417,28 @@ input:focus-visible {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif
 }
 
+/* A tartományok alapszíne; kattintható */
 .land {
   fill: var(--land);
   cursor: pointer
 }
 
+/* A városállamok (Berlin, Hamburg, Bréma) kicsit sötétebb színűek */
 .land.city {
   fill: var(--city)
 }
 
+/* Ha az egér egy tartomány fölött van, sárgás lesz */
 .land:hover {
   fill: var(--hover)
 }
 
+/* A kiválasztott (rákattintott) tartomány rózsaszín */
 .land.sel {
   fill: var(--sel)
 }
 
+/* A tartományok fehér határvonalai (nem kattinthatók) */
 .border {
   fill: none;
   stroke: var(--edge);
@@ -389,6 +447,7 @@ input:focus-visible {
   pointer-events: none
 }
 
+/* A folyók kék vonalai */
 .river {
   fill: none;
   stroke: var(--water);
@@ -398,70 +457,84 @@ input:focus-visible {
   pointer-events: none
 }
 
+/* A kisebb folyók vékonyabbak */
 .river.small {
   stroke-width: 1.2
 }
 
+/* A térképen lévő jelek (ipari helyek, hegyek, főváros) kattinthatók */
 .m,
 .mount,
 .capital {
   cursor: pointer
 }
 
+/* A tavak kék foltjai */
 .lake {
   fill: var(--water);
   stroke: var(--edge);
   stroke-width: 1
 }
 
+/* A hegységek barna háromszögei */
 .mount {
   fill: var(--mount);
   stroke: var(--edge);
   stroke-width: .8
 }
 
+/* Az ipari jelek közös fehér szegélye */
 .m {
   stroke: var(--edge);
   stroke-width: 1.2
 }
 
+/* Az ipari jelek színe kategóriánként: autóipar piros */
 .auto {
   fill: #c8102e
 }
 
+/* nehézipar és bányászat szürke */
 .ipar {
   fill: #4a5568
 }
 
+/* vegyipar lila */
 .vegy {
   fill: #8b46e0
 }
 
+/* pénzügy sárga fekete szegéllyel */
 .penz {
   fill: #f2b705;
   stroke: #14161a
 }
 
+/* technológia türkiz */
 .tech {
   fill: #0e9aa7
 }
 
+/* szélenergia zöld */
 .szel {
   fill: #1b9a4b
 }
 
+/* A kikötők: fehér jel kék szegéllyel */
 .kikoto {
   fill: var(--edge);
   stroke: #1d6fd6;
   stroke-width: 3
 }
 
+/* A főváros (Berlin) jele: fekete pont */
 .capital {
   fill: #14161a;
   stroke: var(--edge);
   stroke-width: 1
 }
 
+/* A helynevek feliratai: kis betű, fehér körvonallal, hogy a színes háttéren is olvashatók legyenek */
 .lbl {
   pointer-events: none;
   font-size: 10px;
@@ -473,11 +546,13 @@ input:focus-visible {
   stroke-linejoin: round
 }
 
+/* A hegységek feliratai dőlt, barna betűvel */
 .mlbl {
   font-style: italic;
   fill: var(--mount)
 }
 
+/* A folyók feliratai dőlt, kék betűvel */
 .rlbl {
   font-style: italic;
   font-weight: 500;
@@ -485,6 +560,7 @@ input:focus-visible {
   fill: var(--water)
 }
 
+/* A tartományok kétbetűs rövidítései, halvány betűvel a tartomány közepén */
 .abbr {
   font-size: 13px;
   font-weight: 700;
@@ -493,6 +569,7 @@ input:focus-visible {
   pointer-events: none
 }
 
+/* A tenger feliratai (Északi-tenger, Balti-tenger) */
 .sea {
   pointer-events: none;
   font-size: 11px;
@@ -500,20 +577,24 @@ input:focus-visible {
   fill: var(--sea)
 }
 
+/* A térkép melletti panel: a tartomány neve */
 .side h3 {
   margin: 0 0 4px;
   font-size: 1.3rem
 }
 
+/* A panel alcímei (Gazdaság, a megjelölt helyek nevei) */
 .side h4 {
   margin: 14px 0 2px;
   font-size: 1rem
 }
 
+/* A panel bekezdései */
 .side p {
   margin: 0
 }
 
+/* A Tudtad? doboz halvány háttérrel */
 .side .tip {
   margin-top: 14px;
   padding: 10px 14px;
@@ -525,10 +606,12 @@ input:focus-visible {
   display: block
 }
 
+/* A panel halvány üzenete (Még nincs kijelölt tartomány) */
 .side .meta {
   margin: 0
 }
 
+/* A kép helyőrzője: szaggatott keretes doboz, ha egy képnek nincs forrása */
 .ph {
   aspect-ratio: 16/10;
   display: grid;
@@ -542,10 +625,12 @@ input:focus-visible {
   font-size: .85rem
 }
 
+/* A kép és a képaláírás tartója */
 .fig {
   margin: 14px 0 0
 }
 
+/* A képek mindig 16:10 arányúak, és kitöltik a szélességet (a kép szélei levágódhatnak) */
 .fig img {
   display: block;
   width: 100%;
@@ -554,16 +639,19 @@ input:focus-visible {
   border-radius: 10px
 }
 
+/* A képaláírás kisebb, halvány betűvel */
 .fig figcaption {
   font-size: .85rem;
   color: #5b616b;
   margin-top: 4px
 }
 
+/* A képaláírásban a forráslink a szöveg színét kapja */
 .fig figcaption a {
   color: inherit
 }
 
+/* A térkép jelmagyarázata: annyi oszlop, amennyi elfér */
 .legend {
   list-style: none;
   margin: 20px 0 0;
@@ -574,12 +662,14 @@ input:focus-visible {
   font-size: .9rem
 }
 
+/* Egy jelmagyarázat-sor: kis jel és mellette a szöveg */
 .legend li {
   display: flex;
   align-items: center;
   gap: 8px
 }
 
+/* A jelmagyarázat jelei (itt is változókkal, hogy a sötét módban átszíneződjenek) */
 .legend svg {
   flex: none;
   --edge: #fff;
@@ -587,23 +677,28 @@ input:focus-visible {
   --mount: #8a6d3b
 }
 
+/* Ha a felhasználó csökkentett mozgást kért a rendszerben, kikapcsolja az animációkat */
 @media (prefers-reduced-motion:reduce) {
   * {
     transition: none !important
   }
 }
 
+/* SÖTÉT MÓD: ha a böngésző sötét témát használ, a lenti szabályok felülírják a fenti színeket */
 @media (prefers-color-scheme:dark) {
+  /* Sötét háttér és világos szöveg */
   body {
     background: #101216;
     color: #eceef2
   }
 
+  /* A címek világos színűek */
   h2,
   h3 {
     color: #eceef2
   }
 
+  /* A kártyák sötét háttérrel és sötét kerettel */
   .stage,
   .card {
     background: #1a1d23;
@@ -611,6 +706,7 @@ input:focus-visible {
     color: #eceef2
   }
 
+  /* Halványabb szürke szín az évszámoknak és a kisebb szövegeknek */
   .ticks button,
   .meta,
   dt {
@@ -629,6 +725,7 @@ input:focus-visible {
     background: #ff4d6a
   }
 
+  /* A csúszka sávja sötétebb */
   input[type=range]::-webkit-slider-runnable-track {
     background: #2c313a
   }
@@ -637,6 +734,7 @@ input:focus-visible {
     background: #2c313a
   }
 
+  /* A múlt / jelen kapcsoló sötét háttere és szövege */
   .switch {
     background: #262a32
   }
@@ -645,6 +743,7 @@ input:focus-visible {
     color: #eceef2
   }
 
+  /* A kvíz válaszai sötét háttérrel */
   .opts button {
     background: #101216;
     border-color: #2c313a;
@@ -663,6 +762,7 @@ input:focus-visible {
     color: #fff
   }
 
+  /* A kvíz gombja fordított színekkel (világos háttér, sötét szöveg) */
   .next {
     background: #eceef2;
     color: #101216
@@ -672,6 +772,7 @@ input:focus-visible {
     color: #fff
   }
 
+  /* A térkép színei sötét módban (a változók értékét írja át) */
   .de {
     --land: #2b3039;
     --city: #434b59;
@@ -684,36 +785,43 @@ input:focus-visible {
     --sel: #7a2a3a
   }
 
+  /* A helyőrző sötét módban */
   .ph {
     background: #101216;
     border-color: #5b616b;
     color: #9aa1ad
   }
 
+  /* A Tudtad? doboz sötét módban */
   .side .tip {
     background: #101216
   }
 
+  /* A képaláírás halványabb szürke */
   .fig figcaption {
     color: #9aa1ad
   }
 
+  /* A jelmagyarázat jelei sötét módban */
   .legend svg {
     --edge: #1a1d23;
     --water: #5aa2e6;
     --mount: #c9a36b
   }
 
+  /* A pénzügyi jel szegélye világos, hogy látszódjon */
   .penz {
     stroke: #eceef2
   }
 
+  /* A főváros jele világos, hogy látszódjon */
   .capital {
     fill: #eceef2
   }
 }
 
 /* ---- Múlt rész (történelem) ---- */
+/* A múlt rész egy sora: bal oldalon szöveg, jobb oldalon kép vagy Tudtad? doboz, vékony vonallal elválasztva */
 .hist .row {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -723,24 +831,29 @@ input:focus-visible {
   border-top: 1px solid #d3d7de
 }
 
+/* Az első sor fölött nincs vonal és térköz */
 .hist .row:first-child {
   border-top: 0;
   padding-top: 0
 }
 
+/* Az utolsó sor alatt nincs térköz */
 .hist .row:last-child {
   padding-bottom: 0
 }
 
+/* A korszakok címe (pl. 1933–1945: A Harmadik Birodalom) */
 .hist h3 {
   margin: 0 0 8px;
   font-size: 1.3rem
 }
 
+/* A múlt részben a képnek nincs külső margója */
 .hist .fig {
   margin: 0
 }
 
+/* A Tudtad? doboz a múlt részben */
 .hist .tip {
   padding: 10px 14px;
   border-radius: 10px;
@@ -751,16 +864,19 @@ input:focus-visible {
   display: block
 }
 
+/* A kvíz szakasza: kis hely hagyása a történet kártya és a kvíz között */
 .quizsec {
   margin-top: 32px
 }
 
+/* Telefonon a múlt rész szövege és képe is egymás alá kerül */
 @media (max-width:720px) {
   .hist .row {
     grid-template-columns: 1fr
   }
 }
 
+/* A múlt rész sötét módban: sötétebb elválasztó vonal és Tudtad? doboz */
 @media (prefers-color-scheme:dark) {
   .hist .row {
     border-color: #2c313a
@@ -771,15 +887,18 @@ input:focus-visible {
   }
 }
 
+/* A kép forrása az időutazás kártya alján */
 .stage .credit {
   padding: 0 20px 14px;
   font-size: .8rem
 }
 
+/* Ha nincs megadva forrás, a sor teljesen eltűnik */
 .stage .credit:empty {
   display: none
 }
 
+/* A forráslink a szöveg színét kapja */
 .stage .credit a {
   color: inherit
 }
