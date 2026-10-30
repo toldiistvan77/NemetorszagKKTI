@@ -2,60 +2,81 @@
 <html lang="hu">
 
 <head>
+  <!-- Az oldal kódolása: így jelennek meg jól az ékezetes betűk -->
   <meta charset="utf-8">
+  <!-- Telefonon a képernyő szélességéhez igazítja az oldalt -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Az oldal címe a böngészőfülön -->
   <title>Németország (KK, TI)</title>
+  <!-- Gyorsítja a Google Fonts betöltését -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- A címekhez használt Archivo Black betűtípus (internet kell hozzá) -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <!-- Az oldal ikonja a böngészőfülön (a német zászló): SVG a modern, ICO a régi böngészőknek -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="favicon.ico" sizes="any">
+  <!-- A külön CSS fájl, ebben van az oldal összes kinézete -->
   <link rel="stylesheet" href="stilus.css">
 </head>
 
 <body>
+  <!-- FEJLÉC: az oldal címe és alatta a német zászló három csíkja (fekete, piros, arany) -->
   <header>
     <h1>NÉMETORSZÁG</h1>
     <div class="flag"><i></i><i></i><i></i></div>
   </header>
+  <!-- FŐ TARTALOM: az időutazás, a múlt/jelen kapcsoló és a két panel -->
   <main>
+    <!-- IDŐUTAZÁS: a csúszkával váltható kártya 1871-től 2002-ig -->
     <section aria-label="Időutazás">
+      <!-- A kártya: a képes rész (évszámmal), a szöveg és a kép forrása; a tartalmat a JavaScript tölti ki az eras lista alapján -->
       <div class="stage">
         <div class="pic" id="pic"><b id="year"></b></div>
         <p><strong id="stTitle"></strong><span id="stText"></span></p>
         <div class="meta credit" id="stCredit"></div>
       </div>
+      <!-- A csúszka (0-tól 4-ig, a 5 szakaszhoz) -->
       <div class="slider"><input type="range" id="slide" min="0" max="4" step="any" value="0"
           aria-label="Időutazás csúszka"></div>
+      <!-- A csúszka alatti évszámok, a JavaScript hozza létre őket -->
       <div class="ticks" id="ticks"></div>
     </section>
 
+    <!-- A MÚLT / JELEN kapcsoló: a két gomb váltja a lenti két panelt -->
     <div class="switch" id="sw" role="tablist">
       <span class="thumb"></span>
       <button role="tab" id="tPast" aria-selected="true">múlt</button>
       <button role="tab" id="tNow" aria-selected="false">jelen</button>
     </div>
 
+    <!-- MÚLT PANEL: Németország története a Harmadik Birodalomtól a berlini falig, alul a kvízzel -->
     <section class="panel" id="past">
       <h2>Németország története</h2>
+      <!-- A történeti szöveg kártyája: három sor (korszak), mindegyik szöveg + kép -->
       <div class="card today hist">
+        <!-- 1. sor: 1933–1945, a Harmadik Birodalom (szöveg + a lerombolt Reichstag képe) -->
         <div class="row">
           <div>
             <h3>1933–1945: A Harmadik Birodalom</h3>
             <p>1933. január 30-án Adolf Hitlert kancellárrá nevezték ki. Alig néhány hónap alatt felszámolta a demokráciát: a Reichstag felgyújtása és a felhatalmazási törvény után minden más pártot betiltottak, a hatalom a náci párt és a „Führer” kezében összpontosult. A rendszer üldözte az ellenzéket és a zsidókat: az 1935-ös nürnbergi törvények megfosztották őket állampolgári jogaiktól, 1938. november 9–10-én, a kristályéjszakán pedig zsinagógákat gyújtottak fel és üzleteket törtek be.</p>
             <p>1939. szeptember 1-jén Németország megtámadta Lengyelországot, ezzel kitört a második világháború. A háború alatt a nácik megszervezték a holokausztot, amelynek mintegy hatmillió zsidó esett áldozatul. Hitler 1945. április 30-án Berlinben öngyilkos lett, Németország május 8-án feltétel nélkül megadta magát. A városok romokban álltak, milliók vesztették el az otthonukat.</p>
           </div>
+          <!-- Kép forrásmegjelöléssel; ha a kép nem tölt be, szürke helyőrző jelenik meg helyette -->
           <figure class="fig"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ruins_of_the_Reichstag_in_Berlin%2C_3_June_1945._BU8573.jpg?width=900" alt="A lerombolt Reichstag épülete Berlinben, 1945" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Kép helye'}))"><figcaption>A lerombolt Reichstag, Berlin, 1945. június 3. (fotó: <a href="https://commons.wikimedia.org/wiki/File:Ruins_of_the_Reichstag_in_Berlin,_3_June_1945._BU8573.jpg" target="_blank" rel="noopener">Sgt Hewitt / Imperial War Museum</a>, Wikimedia Commons, közkincs)</figcaption></figure>
         </div>
 
+        <!-- 2. sor: 1945–1961, megszállás és kettéosztottság (szöveg + Tudtad? doboz) -->
         <div class="row">
           <div>
             <h3>1945–1961: Megszállás és kettéosztottság</h3>
             <p>A győztes hatalmak, az USA, a Szovjetunió, Nagy-Britannia és Franciaország négy megszállási övezetre osztották az országot, Berlint pedig négy szektorra. A nyugati hatalmak és a Szovjetunió között hamar kiéleződtek az ellentétek. 1948-ban, a nyugati övezetek pénzreformja után a szovjetek lezárták a szárazföldi utakat Nyugat-Berlin felé. A nyugati hatalmak közel egy évig repülőgépekkel látták el a várost, ezt hívják berlini légihídnak. 1949-ben két külön állam jött létre: május 23-án a nyugati NSZK, október 7-én a szovjet övezetben az NDK.</p>
             <p>Nyugaton Konrad Adenauer kancellár vezetésével a piacgazdaság és a „gazdasági csoda” gyors fellendülést hozott, keleten viszont egypárti diktatúra és tervgazdaság működött. Emiatt 1949 és 1961 között több mint 2,5 millió ember hagyta el az NDK-t, többségük a még nyitott Berlinen át.</p>
           </div>
+          <!-- Tudtad? doboz: érdekesség a légihídról -->
           <p class="tip"><strong>Tudtad?</strong>A légihíd egyik amerikai pilótája, Gail Halvorsen apró ejtőernyőkön cukorkát dobott a berlini gyerekeknek. Ezért kezdték a gépeket „rozinabombázóknak” (Rosinenbomber) hívni.</p>
         </div>
 
+        <!-- 3. sor: 1961–1989, a berlini fal (szöveg + két kép) -->
         <div class="row">
           <div>
             <h3>1961–1989: A berlini fal</h3>
@@ -63,21 +84,26 @@
             <p>Az 1980-as évek végén a keleti blokk meggyengült. 1989 nyarán Magyarország megnyitotta a határát, és az NDK-polgárok tömegesen indultak Nyugatra. Lipcsében és más városokban hétről hétre nőttek a békés tüntetések, Erich Honeckert, a párt vezetőjét október közepén lemondatták. November 9-én egy keletnémet vezető sajtótájékoztatón félreérthetően jelentette be az utazási korlátozások feloldását, mire emberek ezrei özönlöttek a határátkelőkhöz, a határőrök pedig este megnyitották az átkelőket. A fal hivatalos lebontását 1990 júniusában kezdték meg, az országot pedig október 3-án egyesítették.</p>
           </div>
           <div>
+            <!-- 1. kép: a fal építése 1961-ben -->
             <figure class="fig"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv_Bild_183-85458-0002%2C_Berlin%2C_Mauerbau%2C_Kampfgruppen_am_Brandenburger_Tor.jpg?width=900" alt="Keletnémet fegyveres egységek a Brandenburgi kapunál a fal építésének napján" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Kép helye'}))"><figcaption>Keletnémet fegyveres egységek a Brandenburgi kapunál, 1961. augusztus 13. (fotó: <a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-85458-0002,_Berlin,_Mauerbau,_Kampfgruppen_am_Brandenburger_Tor.jpg" target="_blank" rel="noopener">Bundesarchiv, Bild 183-85458-0002 / Peter Heinz Junge</a>, Wikimedia Commons, CC BY-SA 3.0 DE)</figcaption></figure>
             <div style="height:16px"></div>
+            <!-- 2. kép: a fal lebontása 1989-ben -->
             <figure class="fig"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Crane_removed_part_of_Wall_Brandenburg_Gate.jpg?width=900" alt="Daru emeli el a berlini fal egy szakaszát a Brandenburgi kapunál" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Kép helye'}))"><figcaption>A fal egy szakaszát daru emeli el a Brandenburgi kapunál, 1989 decemberében. (fotó: <a href="https://commons.wikimedia.org/wiki/File:Crane_removed_part_of_Wall_Brandenburg_Gate.jpg" target="_blank" rel="noopener">SSGT F. Lee Corkran</a>, Wikimedia Commons, közkincs)</figcaption></figure>
           </div>
         </div>
       </div>
 
+      <!-- KVÍZ: a kérdéseket a JavaScript tölti be a qs listából a quiz dobozba -->
       <div class="quizsec">
         <h2>Kvíz: Németország története</h2>
         <div class="card" id="quiz"></div>
       </div>
     </section>
 
+    <!-- JELEN PANEL: Németország ma (alapból rejtett, a kapcsoló mutatja meg) -->
     <section class="panel" id="now" hidden>
       <h2>Németország ma</h2>
+      <!-- A jelen bemutatása: három bekezdés -->
       <div class="card today">
         <p>Németország Közép-Európa egyik legnagyobb és legnépesebb állama, területe nagyjából 357 ezer
           négyzetkilométer. Mintegy 84 millió ember él itt, ezzel az Európai Unió legnépesebb tagállama. Kilenc
@@ -107,10 +133,12 @@
           autómárka készül.</p>
       </div>
 
+      <!-- TÉRKÉP kártya: kattintható térkép és mellette a kiválasztott tartomány leírása -->
       <div class="card mapcard">
         <h2>Földrajz és ipar</h2>
         <p class="meta" style="margin:0">Kattints egy tartományra a térképen, és mellette megjelenik a rajta megjelölt
           helyek leírása!</p>
+        <!-- Két oszlop: bal oldalon a térkép, jobb oldalon a leírás (telefonon egymás alatt) -->
         <div class="mapwrap">
           <svg class="de" id="demap" viewBox="0 0 440 590" role="img"
             aria-label="Németország térképe a tartományokkal, folyókkal, hegységekkel és ipari központokkal">
@@ -388,10 +416,12 @@
             <text class="sea" x="64.3" y="53.3" text-anchor="middle">Északi-tenger</text>
             <text class="sea" x="268.9" y="39.4" text-anchor="middle">Balti-tenger</text>
           </svg>
+          <!-- A leírás helye: a JavaScript tölti ki, ha rákattintanak egy tartományra -->
           <div class="side" id="side" aria-live="polite">
             <p class="meta">Még nincs kijelölt tartomány. Kattints egyre a térképen!</p>
           </div>
         </div>
+        <!-- JELMAGYARÁZAT: az ipari jelek és a térkép elemeinek magyarázata -->
         <ul class="legend">
           <li><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
               <circle class="m auto" cx="8" cy="8" r="5">
@@ -447,8 +477,11 @@
     </section>
   </main>
 
+  <!-- JAVASCRIPT: az időutazás, a kapcsoló, a kvíz és a térkép működése -->
   <script>
     // ---- Időutazás: 5 szakasz. A "img" mezőbe képfájl is megadható (pl. "kep1.jpg"). ----
+    // Egy szakasz mezői: y = évszám, t = cím, x = leírás, c = tartalék színek (két szín),
+    // img = háttérkép linkje, cr = a kép forrása (HTML, link is lehet benne)
     const eras = [
       {y: "1871", t: "A Német Birodalom megalakulása", x: "1871. január 18-án a versailles-i Tükörteremben kiáltották ki a Német Birodalmat, miután Poroszország és szövetségesei legyőzték Franciaországot. Bismarck vezetésével a német államok egyesülnek, I. Vilmos porosz király pedig császár lesz. A birodalom szövetségi állam volt, amelyben Poroszország volt a legnagyobb és a legerősebb tag. Az egyesített országban gyorsan fejlődött az ipar, a vasút és a bányászat, Németország pedig a kontinens egyik vezető hatalmává vált.", c: ["#3b2f2f", "#8a6d3b"], img: "https://commons.wikimedia.org/wiki/Special:FilePath/A_v_Werner_-_Kaiserproklamation_am_18_Januar_1871_%283._Fassung_1885%29.jpg?width=1400", cr: 'A Német Birodalom kikiáltása Versailles-ban, 1871 (fotó/kép: <a href="https://commons.wikimedia.org/wiki/File:A_v_Werner_-_Kaiserproklamation_am_18_Januar_1871_(3._Fassung_1885).jpg" target="_blank" rel="noopener">Anton von Werner festménye, 1885</a>, Wikimedia Commons, közkincs)'},
       {y: "1919", t: "A Weimari Köztársaság", x: "Az első világháborús vereség után 1918 novemberében kitört a forradalom, II. Vilmos császár lemondott, és kikiáltották a köztársaságot. Az új alkotmányt 1919-ben Weimarban fogadta el a nemzetgyűlés, innen kapta a köztársaság a nevét. A versailles-i békeszerződés súlyos területi veszteségeket és jóvátételt rótt az országra. Az 1923-as hiperinfláció és az 1929-es világválság után egyre feszültebb lett a politikai helyzet, ami megnyitotta az utat a nácik hatalomra jutása előtt. Közben virágzott a kultúra: Weimarban megalakult a Bauhaus iskola, Berlin pedig Európa egyik kulturális központja volt.", c: ["#2f3b4a", "#6b7f99"], img: "https://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv_Bild_146-1978-042-11%2C_Weimar%2C_Vereidigung_Reichspr%C3%A4sident_Ebert.jpg?width=1400", cr: 'Ujjongás a weimari Nemzeti Színház erkélyén Ebert birodalmi elnöki eskütétele után, 1919. augusztus 21. (fotó/kép: <a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_146-1978-042-11,_Weimar,_Vereidigung_Reichspr%C3%A4sident_Ebert.jpg" target="_blank" rel="noopener">Bundesarchiv, Bild 146-1978-042-11 / Robert Sennecke</a>, Wikimedia Commons, CC BY-SA 3.0 DE)'},
@@ -456,10 +489,11 @@
       {y: "1990", t: "Az újraegyesítés", x: "Az 1989 nyarán kezdődött menekülthullámban fontos szerepe volt annak, hogy Magyarország szeptemberben megnyitotta a határát a keletnémet állampolgárok előtt. 1989. november 9-én a békés tüntetések nyomására megnyílt a berlini fal. Az NDK öt tartománya 1990. október 3-án csatlakozott az NSZK-hoz, így újra egy ország lett Németország, fővárosa pedig Berlin. Az egyesítés nagy költségekkel járt: keleten sok gyár bezárt, megugrott a munkanélküliség, és évekig tartott az átalakulás.", c: ["#1f4a3b", "#d4a017"], img: "https://commons.wikimedia.org/wiki/Special:FilePath/Volkspolizei_at_the_official_opening_of_the_Brandenburg_Gate.jpg?width=1400", cr: 'Keletnémet rendőrök várják a Brandenburgi kapu hivatalos megnyitását, 1989. december 22. (fotó/kép: <a href="https://commons.wikimedia.org/wiki/File:Volkspolizei_at_the_official_opening_of_the_Brandenburg_Gate.jpg" target="_blank" rel="noopener">SSGT F. Lee Corkran / U.S. DoD</a>, Wikimedia Commons, közkincs)'},
       {y: "2002", t: "Az euró bevezetése", x: "2002. január 1-jén bevezették az euró készpénzét, és a német márka megszűnt fizetőeszköz lenni. Németország 1957-ben az Európai Gazdasági Közösség egyik alapító tagja volt, így az euró bevezetésében is vezető szerepet játszott. Az euróövezet legnagyobb gazdaságaként az ország azóta is az Európai Unió egyik meghatározó állama. 2005 és 2021 között Angela Merkel kancellár vezette a kormányt, az ő idejében fogadták el az energiaátállás nagy lépéseit is.", c: ["#1f3a6b", "#3b82c4"], img: "https://commons.wikimedia.org/wiki/Special:FilePath/Euro_coins_and_banknotes.jpg?width=1400", cr: 'Euró bankjegyek és érmék (fotó/kép: <a href="https://commons.wikimedia.org/wiki/File:Euro_coins_and_banknotes.jpg" target="_blank" rel="noopener"></a>, Wikimedia Commons, közkincs)'}
     ];
+    // Rövidítés: $("valami") = az az elem, aminek az id-ja "valami"
     const $ = id => document.getElementById(id);
     const slide = $("slide");
     const ticks = $("ticks");
-    let cur = -1;
+    let cur = -1;   // az éppen látható szakasz sorszáma (-1 = még egyik sem)
 
     // A csúszka alatti évszámok: kattintásra odaugrik a csúszka
     eras.forEach((e, i) => {
@@ -503,6 +537,7 @@
     goTo(0);
 
     // ---- Múlt / jelen kapcsoló ----
+    // past = true: a múlt panel látszik, false: a jelen panel látszik
     function show(past) {
       $("sw").classList.toggle("right", !past);
       $("tPast").setAttribute("aria-selected", past); $("tNow").setAttribute("aria-selected", !past);
@@ -511,6 +546,7 @@
     $("tPast").onclick = () => show(true); $("tNow").onclick = () => show(false);
 
     // ---- Kvíz ----
+    // q = kérdés, o = válaszlehetőségek, a = a jó válasz sorszáma (0-tól számolva)
     const qs = [
       {q: "Melyik évben nevezték ki Adolf Hitlert német kancellárrá?", o: ["1923", "1933", "1939", "1945"], a: 1},
       {q: "Mi történt 1938. november 9–10-én, a kristályéjszakán?", o: ["Zsinagógákat gyújtottak fel és üzleteket törtek be", "Betiltották az összes pártot", "Megtámadták Lengyelországot", "Lezárták a berlini határt"], a: 0},
@@ -523,7 +559,8 @@
       {q: "Mikor kezdték építeni a berlini falat?", o: ["1949. október 7.", "1955. május 8.", "1961. augusztus 13.", "1989. november 9."], a: 2},
       {q: "Mi vezetett a fal megnyitásához 1989. november 9-én?", o: ["Egy félreérthető sajtótájékoztató után ezrek özönlöttek a határátkelőkhöz", "A szovjetek katonai támadása", "Az NSZK csapatai áttörték a határt", "Az ENSZ határozata"], a: 0}
     ];
-    let qi = 0, score = 0;
+    let qi = 0, score = 0;   // qi = hányadik kérdésnél tartunk, score = a jó válaszok száma
+    // Kirajzolja az aktuális kérdést (vagy a végeredményt, ha elfogytak a kérdések)
     function renderQ() {
       const box = $("quiz");
       if (qi >= qs.length) {
